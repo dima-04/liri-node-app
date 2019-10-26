@@ -24,7 +24,9 @@ function spotifyThisSong(song) {
     for(let i=0;i<track.artists.length;i++){
         console.log("-" + track.artists[i].name);
     }
+    console.log("Song Name: " + track.name);
     });
+
 
 }
 function movieThis(movie) {
