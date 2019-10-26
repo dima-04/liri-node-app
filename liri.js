@@ -25,6 +25,8 @@ function spotifyThisSong(song) {
         console.log("-" + track.artists[i].name);
     }
     console.log("Song Name: " + track.name);
+    console.log("Preview URL: " + track.preview_url);
+    console.log("Album Name: " + track.album.name);
     });
 
 
