@@ -1,5 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
+const moment = require("moment");
 const keys = require("./keys.js");
 
 const Spotify = require('node-spotify-api');
@@ -14,7 +15,13 @@ function concertThis(artist) {
   function(response) {
     // If the axios was successful...
     // Then log the body from the site!
-    console.log(JSON.stringify(response.data));
+    for (let i=0;i<response.data.length;i++){
+        console.log("Venue Name: "+response.data[i].venue.name);
+        console.log("Venue location: "+response.data[i].venue.city+", "+ response.data[i].venue.country);
+        console.log("Date Time: "+moment(response.data[i].datetime).format('L'));
+        console.log("+________________________________________________________+")
+    }
+
   },
 
   function(error) {
