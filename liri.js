@@ -1,4 +1,5 @@
 require("dotenv").config();
+var fs = require("fs");
 const axios = require("axios");
 const moment = require("moment");
 const keys = require("./keys.js");
@@ -68,12 +69,30 @@ function spotifyThisSong(song) {
     });
 }
 function movieThis(movie) {
+    if(movie==null){
+        movie="Mr. Nobody";
+    }
     axios.get("http://www.omdbapi.com/?i=tt3896198&apikey=e606d2fa&t=" + movie).then(
   function(response) {
     // If the axios was successful...
     // Then log the body from the site!
-    console.log(response);
-  },
+     console.log("Title: " +response.data.Title);
+     console.log("Year: " +response.data.Year);
+     for (let i=0;i<response.data.Ratings.length;i++){
+         if (response.data.Ratings[i].Source ==='Internet Movie Database'){
+            console.log("IMDB Rating: "+ response.data.Ratings[i].Value);
+         }
+         else if (response.data.Ratings[i].Source ==='Rotten Tomatoes'){
+            console.log("Rotten Tomatoes Rating: "+ response.data.Ratings[i].Value);
+
+         }
+        
+        }
+        console.log("Country: " +response.data.Country);
+        console.log("Language: " +response.data.Language);
+        console.log("Plot: " +response.data.Plot);
+        console.log("Actors: " +response.data.Actors);
+    },
     
   function(error) {
     if (error.response) {
@@ -93,9 +112,27 @@ function movieThis(movie) {
     console.log(error.config);
   }
 );
-  
-
 }
+function doWhatItSays(){
+    fs.readFile("random.txt", "utf8", function(err, data) {
+        if (err) {
+          return console.log(err);
+        }
+      
+        // Break the string down by comma separation and store the contents into the output array.
+        var output = data.split(",");
+      
+        // Loop Through the newly created output array
+        for (var i = 0; i < output.length; i++) {
+      
+          // Print each element (item) of the array/
+          console.log(output[i]);
+        }
+      });
+      
+}
+
+
 
 switch (command) {
     case "concert-this":
@@ -110,6 +147,7 @@ switch (command) {
 
         break;
     case "do-what-it-says":
+        doWhatItSays();
 
 
         break;
