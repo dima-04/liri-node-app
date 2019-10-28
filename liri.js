@@ -1,11 +1,10 @@
 require("dotenv").config();
-var fs = require("fs");
+const fs = require("fs");
 const axios = require("axios");
 const moment = require("moment");
 const keys = require("./keys.js");
 
 const Spotify = require('node-spotify-api');
-const fs = require("fs");
 const spotify = new Spotify(keys.spotify);
 
 function concertThis(artist) {
