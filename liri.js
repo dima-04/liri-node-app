@@ -5,11 +5,8 @@ const moment = require("moment");
 const keys = require("./keys.js");
 
 const Spotify = require('node-spotify-api');
-var fs = require("fs");
+const fs = require("fs");
 const spotify = new Spotify(keys.spotify);
-
-const command = process.argv[2];
-const arg = process.argv[3];
 
 function concertThis(artist) {
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(
@@ -121,35 +118,33 @@ function doWhatItSays(){
       
         // Break the string down by comma separation and store the contents into the output array.
         var output = data.split(",");
-      
-        // Loop Through the newly created output array
-        for (var i = 0; i < output.length; i++) {
-      
-          // Print each element (item) of the array/
-          console.log(output[i]);
-        }
+
+        processCommand(output[0],output[1]);
+
       });
       
 }
 
-
-
-switch (command) {
-    case "concert-this":
-        concertThis(arg);
-        break;
-    case "spotify-this-song":
-        spotifyThisSong(arg);
-
-        break;
-    case "movie-this":
-        movieThis(arg);
-
-        break;
-    case "do-what-it-says":
-        doWhatItSays();
-
-
-        break;
+function processCommand(command,arg){
+    switch (command) {
+        case "concert-this":
+            concertThis(arg);
+            break;
+        case "spotify-this-song":
+            spotifyThisSong(arg);
+            break;
+        case "movie-this":
+            movieThis(arg);
+            break;
+        case "do-what-it-says":
+            doWhatItSays();
+            break;
+    } 
 }
+
+const command = process.argv[2];
+const arg = process.argv[3];
+processCommand(command,arg);
+
+
 
