@@ -13,10 +13,10 @@ function concertThis(artist) {
     // If the axios was successful...
     // Then log the body from the site!
     for (let i=0;i<response.data.length;i++){
-        console.log("Venue Name: "+response.data[i].venue.name);
-        console.log("Venue location: "+response.data[i].venue.city+", "+ response.data[i].venue.country);
-        console.log("Date Time: "+moment(response.data[i].datetime).format('L'));
-        console.log("+________________________________________________________+")
+        writeOutput("Venue Name: "+response.data[i].venue.name); 
+        writeOutput("Venue location: "+response.data[i].venue.city+", "+ response.data[i].venue.country);
+        writeOutput("Date Time: "+moment(response.data[i].datetime).format('L'));
+        writeOutput("+________________________________________________________+")
     }
   },
 
@@ -41,27 +41,39 @@ function concertThis(artist) {
 
 
 }
+
+function writeOutput(str){
+    console.log(str);
+    fs.appendFile("log.txt", str + "\n", function(err) {
+
+        // If the code experiences any errors it will log the error to the console.
+        if (err) {
+          return console.log(err);
+        }
+      });
+
+}
+
 function spotifyThisSong(song) {
     spotify.search({ type: 'track', query: song }, function (err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
         if (data.tracks.items.length === 0) {
-            console.log("Artist");
-
-            console.log("Song Name: " + "The Sing");
-            console.log("Preview URL: " + "https://open.spotify.com/track/0hrBpAOgrt8RXigk83LLNE");
+            writeOutput("Artist");
+            writeOutput("Song Name: " + "The Sing");
+            writeOutput("Preview URL: " + "https://open.spotify.com/track/0hrBpAOgrt8RXigk83LLNE");
             return console.log("Album Name: " + "Happy Nation");
         }
         const track = data.tracks.items[0];
 
-        console.log("Artist");
+        writeOutput("Artist");
         for (let i = 0; i < track.artists.length; i++) {
-            console.log("-" + track.artists[i].name);
+            writeOutput("-" + track.artists[i].name);
         }
-        console.log("Song Name: " + track.name);
-        console.log("Preview URL: " + track.preview_url);
-        console.log("Album Name: " + track.album.name);
+        writeOutput("Song Name: " + track.name);
+        writeOutput("Preview URL: " + track.preview_url);
+        writeOutput("Album Name: " + track.album.name);
     });
 }
 function movieThis(movie) {
@@ -72,22 +84,22 @@ function movieThis(movie) {
   function(response) {
     // If the axios was successful...
     // Then log the body from the site!
-     console.log("Title: " +response.data.Title);
-     console.log("Year: " +response.data.Year);
+     writeOutput("Title: " +response.data.Title);
+     writeOutput("Year: " +response.data.Year);
      for (let i=0;i<response.data.Ratings.length;i++){
          if (response.data.Ratings[i].Source ==='Internet Movie Database'){
-            console.log("IMDB Rating: "+ response.data.Ratings[i].Value);
+            writeOutput("IMDB Rating: "+ response.data.Ratings[i].Value);
          }
          else if (response.data.Ratings[i].Source ==='Rotten Tomatoes'){
-            console.log("Rotten Tomatoes Rating: "+ response.data.Ratings[i].Value);
+            writeOutput("Rotten Tomatoes Rating: "+ response.data.Ratings[i].Value);
 
          }
         
         }
-        console.log("Country: " +response.data.Country);
-        console.log("Language: " +response.data.Language);
-        console.log("Plot: " +response.data.Plot);
-        console.log("Actors: " +response.data.Actors);
+        writeOutput("Country: " +response.data.Country);
+        writeOutput("Language: " +response.data.Language);
+        writeOutput("Plot: " +response.data.Plot);
+        writeOutput("Actors: " +response.data.Actors);
     },
     
   function(error) {
@@ -123,6 +135,8 @@ function doWhatItSays(){
       });
       
 }
+
+  
 
 function processCommand(command,arg){
     switch (command) {
