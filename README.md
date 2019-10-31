@@ -1,5 +1,6 @@
 # liri-node-app
-liri is a command line bot, that help you to find information about movies, songs and learn more about your favorite artist.
+liri is a command line bot, that help you to find information about movies, songs and learn more about your favorite artist.  
+You can find all your information on the command line and in a file call log.txt.
 ## How to install Liri:
 * Clone this repository.
 * Run npm install.
@@ -12,6 +13,7 @@ liri is a command line bot, that help you to find information about movies, song
    * Date of the Event. 
    Example:
    Input:  node liri.js concert-this "billie eilish"
+   ![concert](./images/concert-this.png)
    Output: Venue Name: American Airlines Arena
    Venue location: Miami, United States
    Date Time: 03/09/2020
@@ -63,3 +65,4 @@ liri is a command line bot, that help you to find information about movies, song
    Song Name: I Want It That Way
    Preview URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=6856806fdf074016b4f01c32640a9768
    Album Name: The Hits--Chapter One
+
