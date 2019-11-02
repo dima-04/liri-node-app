@@ -29,6 +29,7 @@ You can find all your information on the command line and in a file call log.txt
    *  The album that the song is from.
    Example:
    Input: node liri.js spotify-this-song "hello".
+   ![song](./images/spotify-this-song.png)
    Output:-Adele
    Song Name: Hello
    Preview URL: https://p.scdn.co/mp3-preview/0b90429fd554bad6785faa2b8931d613db4a0ee4?cid=6856806fdf074016b4f01c32640a9768
@@ -46,6 +47,7 @@ You can find all your information on the command line and in a file call log.txt
    * Actors in the movie.
    Example:
    Input: node liri.js movie-this "it"
+   ![movie](./images/movie-this.png)
    Output: Title: It
    Year: 2017
    IMDB Rating: 7.4/10
